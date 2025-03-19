@@ -57,17 +57,16 @@ python app_wrapper.py
 
 ---
 
-## 🛠️ Technologies Used  
-🔹 📌 Click on the localhost URL to access the web interface 
-🔹 👉 The webpage is connected to a trained GMM model using AES encryption for security. 
+📌 Click on the localhost URL to access the web interface 
+👉 The webpage is connected to a trained GMM model using AES encryption for security. 
 
 
 ## 📈 Future Enhancements
 
-🔹 🚀 Real-time fraud detection instead of batch processing.  
-🔹 🚀 User-level fraud alerts via notifications.  
-🔹 🚀 API Integration for banks for seamless fraud detection.  
-🔹 🚀 Advanced AI models (LSTMs, Autoencoders) for improved accuracy.  
+🚀 Real-time fraud detection instead of batch processing.  
+🚀 User-level fraud alerts via notifications.  
+🚀 API Integration for banks for seamless fraud detection.  
+🚀 Advanced AI models (LSTMs, Autoencoders) for improved accuracy.  
 
 
 ### 💡 Contributing
