@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FraudShield | Upload Transactions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="main-nav">
+        <div>
+            <div class="nav-logo">
+                <i class="fas fa-shield-alt"></i>
+                <a href="index.html">FraudShield</a>
+            </div>
+            <div class="nav-buttons">
+                <a href="index.html" class="nav-button">Home</a>
+                <a href="upload.html" class="nav-button active">Upload</a>
+                <a href="help.html" class="nav-button">Help</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section id="upload">
+            <h1>Upload Transactions</h1>
+            <div class="upload-container">
+                <div class="introduction">
+                    <p>Upload your transaction data for fraud detection analysis. Our system will scan your file and identify potential fraudulent activities.</p>
+                    <p>Upload Guidelines:</p>
+                    <ul>
+                        <li>Only CSV files are supported</li>
+                        <li>Maximum file size: 10MB</li>
+                        <li>Ensure your file includes transaction date, amount, and merchant information</li>
+                        <li>Remove any sensitive personal data before uploading</li>
+                    </ul>
+                </div>
+                
+                <form id="uploadForm">
+                    <div class="form-group">
+                        <label for="fileUpload">Upload CSV File</label>
+                        <input type="file" id="fileUpload" accept=".csv" required>
+                    </div>
+                    
+                    
+                    
+                    <div class="form-check">
+                        <input type="checkbox" id="generateReport" checked>
+                        <label for="generateReport">Generate detailed report after analysis</label>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-search"></i> Upload & Detect Fraud
+                    </button>
+                </form>
+                
+                <div class="upload-progress hidden" id="uploadProgress">
+                    <h3>Analyzing Transactions</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <p id="progressText">Uploading file...</p>
+                </div>
+            </div>
+            
+            <!-- Analysis Results Section -->
+            <div id="analysisResults" class="analysis-results hidden">
+                <h2>Fraud Detection Results</h2>
+                
+                <div class="results-summary">
+                    <div class="summary-card">
+                        <div class="summary-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="summary-content">
+                            <h3>Total Transactions</h3>
+                            <p id="totalTransactions">0</p>
+                        </div>
+                    </div>
+                    
+                    <div class="summary-card">
+                        <div class="summary-icon fraud">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="summary-content">
+                            <h3>Fraudulent</h3>
+                            <p id="fraudCount">0</p>
+                        </div>
+                    </div>
+                    
+                    <div class="summary-card">
+                        <div class="summary-icon legitimate">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="summary-content">
+                            <h3>Legitimate</h3>
+                            <p id="legitimateCount">0</p>
+                        </div>
+                    </div>
+                    
+                    <div class="summary-card">
+                        <div class="summary-icon">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <div class="summary-content">
+                            <h3>Fraud Rate</h3>
+                            <p id="fraudPercentage">0%</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tabs">
+                    <button class="tab-button active" data-tab="fraudulent-tab">Fraudulent Transactions</button>
+                    <button class="tab-button" data-tab="all-tab">All Transactions</button>
+                    <button class="tab-button" data-tab="prevention-tab">Prevention Methods</button>
+                </div>
+                
+                <div id="fraudulent-tab" class="tab-content active">
+                    <div class="search-filter">
+                        <input type="text" id="fraudSearchInput" placeholder="Search fraudulent transactions...">
+                    </div>
+                    <div id="fraudulentTransactions" class="transactions-list">
+                        <!-- Fraudulent transactions will be loaded here -->
+                        <div class="empty-state">
+                            <i class="fas fa-search"></i>
+                            <p>No fraudulent transactions detected.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- File upload form -->
+<form id="upload-form" enctype="multipart/form-data">
+    <input type="file" id="csv-file" accept=".csv" required>
+    <button type="submit">Analyze Transactions</button>
+</form>
+
+<!-- Loading indicator -->
+<div id="loading-indicator" style="display: none;">
+    <p>Processing data...</p>
+</div>
+
+<!-- Results container -->
+<div id="results-container" style="display: none;">
+    <h2>Fraud Detection Results</h2>
+    <div id="fraud-summary"></div>
+    <div id="fraud-details"></div>
+    <div id="prevention-tips"></div>
+</div>
+                <div id="all-tab" class="tab-content">
+                    <div class="search-filter">
+                        <input type="text" id="allSearchInput" placeholder="Search all transactions...">
+                    </div>
+                    <div id="allTransactions" class="transactions-list">
+                        <!-- All transactions will be loaded here -->
+                        <div class="empty-state">
+                            <i class="fas fa-search"></i>
+                            <p>No transactions available.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="prevention-tab" class="tab-content">
+                    <div id="preventionMethods" class="prevention-methods">
+                        <!-- Prevention methods will be loaded here -->
+                        <div class="empty-state">
+                            <i class="fas fa-shield-alt"></i>
+                            <p>Prevention methods will appear here after analysis.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button id="downloadReportBtn" class="btn-secondary">
+                        <i class="fas fa-download"></i> Download Report
+                    </button>
+                    <button id="newAnalysisBtn" class="btn-primary">
+                        <i class="fas fa-plus"></i> New Analysis
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 FraudShield. All rights reserved.</p>
+        <p>Contact: support@fraudshield.com</p>
+    </footer>
+    
+    <script src="main.js"></script>
+    <script src="upload_handler.js"></script>
+</body>
+</html>
